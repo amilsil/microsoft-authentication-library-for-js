@@ -342,7 +342,7 @@ declare namespace Msal {
         acquireTokenPopup(scopes: Array<string>, authority: string): Promise<string>;
         acquireTokenPopup(scopes: Array<string>, authority: string, user: User): Promise<string>;
         acquireTokenPopup(scopes: Array<string>, authority: string, user: User, extraQueryParameters: string): Promise<string>;
-        acquireTokenSilent(scopes: Array<string>, authority?: string, user?: User, extraQueryParameters?: string): Promise<string>;
+        acquireTokenSilent(scopes: Array<string>, authority?: string, user?: User, extraQueryParameters?: string, silentRedirectUri?: string): Promise<string>;
         private loadFrameTimeout(urlNavigate, frameName, scope);
         private loadFrame(urlNavigate, frameName);
         private addAdalFrame(iframeId);

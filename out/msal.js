@@ -1,6 +1,3 @@
-/*! msal v0.1.1 2017-05-09 */
-
-'use strict';
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -1625,7 +1622,7 @@ var Msal;
                 });
             });
         };
-        UserAgentApplication.prototype.acquireTokenSilent = function (scopes, authority, user, extraQueryParameters) {
+        UserAgentApplication.prototype.acquireTokenSilent = function (scopes, authority, user, extraQueryParameters, silentRedirectUri) {
             var _this = this;
             return new Promise(function (resolve, reject) {
                 var isValidScope = _this.validateInputScope(scopes);
@@ -1644,11 +1641,12 @@ var Msal;
                     }
                     var authenticationRequest_1;
                     var newAuthority = authority ? Msal.Authority.CreateInstance(authority, _this.validateAuthority) : _this.authorityInstance;
+                    var redirectUri = silentRedirectUri ? silentRedirectUri : _this.redirectUri;
                     if (Msal.Utils.compareObjects(userObject_1, _this._user)) {
-                        authenticationRequest_1 = new Msal.AuthenticationRequestParameters(newAuthority, _this.clientId, scopes, ResponseTypes.token, _this.redirectUri);
+                        authenticationRequest_1 = new Msal.AuthenticationRequestParameters(newAuthority, _this.clientId, scopes, ResponseTypes.token, redirectUri);
                     }
                     else {
-                        authenticationRequest_1 = new Msal.AuthenticationRequestParameters(newAuthority, _this.clientId, scopes, ResponseTypes.id_token_token, _this.redirectUri);
+                        authenticationRequest_1 = new Msal.AuthenticationRequestParameters(newAuthority, _this.clientId, scopes, ResponseTypes.id_token_token, redirectUri);
                     }
                     var cacheResult = _this.getCachedToken(authenticationRequest_1, userObject_1);
                     if (cacheResult) {
